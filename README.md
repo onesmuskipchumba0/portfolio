@@ -30,6 +30,3 @@ A modern, responsive portfolio website built with React and TailwindCSS showcasi
 - Node.js (v14 or higher)
 - npm or yarn
 
-### Installation
-
-1. Clone the repository
