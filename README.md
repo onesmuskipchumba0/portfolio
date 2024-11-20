@@ -1,7 +1,7 @@
 # Onesmus Bett's Portfolio
 
 ## Vercel Link
-[Onesmus Bett's Portfolio](https://portfolio-smoky-one-20.vercel.app/)
+[Onesmus Bett's Portfolio](https://onesmusbett-portfolio.vercel.app/)
 
 A modern, responsive portfolio website built with React and TailwindCSS showcasing my skills, projects, and professional experience as a MERN stack developer.
 
