@@ -5,6 +5,7 @@ import About from './components/About'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
+import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
           <Projects />
         </ErrorBoundary>
         <Contact />
-        {/* Other sections will go here */}
       </main>
+      <Footer />
     </div>
   )
 }
