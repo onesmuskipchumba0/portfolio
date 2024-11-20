@@ -3,6 +3,8 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import About from './components/About'
 import Projects from './components/Projects'
+import Skills from './components/Skills'
+import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
   return (
@@ -11,7 +13,10 @@ function App() {
       <main className="pt-16">
         <Home />
         <About/>
-        <Projects />
+        <Skills />
+        <ErrorBoundary>
+          <Projects />
+        </ErrorBoundary>
         {/* Other sections will go here */}
       </main>
     </div>
