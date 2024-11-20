@@ -1,13 +1,45 @@
+import { useState, useEffect } from 'react';
 import { FaGithub, FaEnvelope, FaNodeJs, FaReact } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTailwindcss, SiGit } from 'react-icons/si';
 
 const Home = () => {
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGithubAvatar = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/onesmuskipchumba0');
+        const data = await response.json();
+        setAvatarUrl(data.avatar_url);
+      } catch (error) {
+        console.error('Error fetching GitHub avatar:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGithubAvatar();
+  }, []);
+
   return (
     <div className="hero min-h-screen bg-base-100" id="home">
       <div className="hero-content flex-col lg:flex-row-reverse gap-8 px-4 sm:px-6 lg:px-8">
-        {/* Image Section */}
-        <div className="max-w-sm rounded-lg shadow-2xl overflow-hidden bg-base-200 animate-fade-in">
-          <div className="w-[300px] h-[300px] bg-gradient-to-r from-primary to-secondary opacity-90"></div>
+        {/* Avatar Section */}
+        <div className="max-w-sm">
+          {loading ? (
+            <div className="w-[300px] h-[300px] rounded-full animate-pulse bg-base-300" />
+          ) : (
+            <div className="avatar">
+              <div className="w-[300px] h-[300px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-4">
+                <img 
+                  src={avatarUrl} 
+                  alt="Onesmus Bett" 
+                  className="rounded-full"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Text Content */}
@@ -19,48 +51,49 @@ const Home = () => {
             MERN Stack Developer
           </h2>
           <p className="py-6 text-base-content/70 text-lg">
-            I specialize in building modern web applications using MongoDB, Express.js, React, and Node.js. 
-            With expertise in Tailwind CSS and Git, I create responsive and scalable solutions.
+            I specialize in building full-stack web applications using MongoDB, Express.js, 
+            React, and Node.js. With a passion for clean code and user-centric design, 
+            I create efficient and scalable solutions.
           </p>
 
           {/* Tech Stack Icons */}
-          <div className="flex flex-wrap gap-4 my-6">
-            <div className="tooltip" data-tip="MongoDB">
-              <SiMongodb className="w-8 h-8 text-green-500" />
-            </div>
-            <div className="tooltip" data-tip="Express.js">
-              <SiExpress className="w-8 h-8 text-gray-500" />
-            </div>
+          <div className="flex flex-wrap gap-4 mb-8">
             <div className="tooltip" data-tip="React">
-              <FaReact className="w-8 h-8 text-blue-400" />
+              <FaReact className="text-3xl text-[#61DAFB]" />
             </div>
             <div className="tooltip" data-tip="Node.js">
-              <FaNodeJs className="w-8 h-8 text-green-600" />
+              <FaNodeJs className="text-3xl text-[#339933]" />
+            </div>
+            <div className="tooltip" data-tip="MongoDB">
+              <SiMongodb className="text-3xl text-[#47A248]" />
+            </div>
+            <div className="tooltip" data-tip="Express.js">
+              <SiExpress className="text-3xl" />
             </div>
             <div className="tooltip" data-tip="Tailwind CSS">
-              <SiTailwindcss className="w-8 h-8 text-cyan-400" />
+              <SiTailwindcss className="text-3xl text-[#06B6D4]" />
             </div>
             <div className="tooltip" data-tip="Git">
-              <SiGit className="w-8 h-8 text-orange-500" />
+              <SiGit className="text-3xl text-[#F05032]" />
             </div>
           </div>
 
           {/* Contact Buttons */}
           <div className="flex flex-wrap gap-4">
-            <a 
-              href="https://github.com/onesmuskipchumba0" 
-              target="_blank" 
+            <a
+              href="https://github.com/onesmuskipchumba0"
+              target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary gap-2"
             >
-              <FaGithub className="w-5 h-5" />
+              <FaGithub className="text-xl" />
               GitHub
             </a>
-            <a 
+            <a
               href="mailto:onesmuskipchumba5@gmail.com"
               className="btn btn-outline btn-primary gap-2"
             >
-              <FaEnvelope className="w-5 h-5" />
+              <FaEnvelope className="text-xl" />
               Contact Me
             </a>
           </div>
