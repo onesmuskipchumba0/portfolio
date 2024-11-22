@@ -7,22 +7,22 @@ import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
-
+import { Route,BrowserRouter, Routes } from 'react-router-dom'
+import ProjectsPage from './pages/ProjectsPage'
+import HomePage from './pages/HomePage'
 function App() {
   return (
-    <div className="min-h-screen bg-base-100">
-      <Navbar />
-      <main className="pt-16">
-        <Home />
-        <About/>
-        <Skills />
-        <ErrorBoundary>
-          <Projects />
-        </ErrorBoundary>
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <>
+        <Navbar/>
+        <BrowserRouter>
+        <Routes>
+          <Route element={<HomePage/>} path='/'/>
+          <Route element={<ProjectsPage/>} path='/projects'/>
+        </Routes>
+        </BrowserRouter>
+        <Footer />
+    </>
+ 
   )
 }
 
