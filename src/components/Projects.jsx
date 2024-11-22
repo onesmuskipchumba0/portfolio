@@ -15,7 +15,7 @@ const Projects = () => {
   const featuredProjects = [
     {
       id: 1,
-      name: "StudentsAdminDashboard",
+      name: "EduAdmin - Students Admin Dashboard",
       description: "A comprehensive dashboard for managing student data, attendance, and performance. Built with MERN stack and features real-time updates, data visualization, and responsive design.",
       image: studentsAdminImg,
       technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
@@ -33,7 +33,7 @@ const Projects = () => {
     },
     {
       id: 3,
-      name: "news-web-app",
+      name: "NewsHub - News Web App",
       description: "A responsive news application that aggregates news from various sources. Features category filtering, search functionality, and bookmark capabilities.",
       image: newsAppImg,
       technologies: ["React", "Node.js", "Express", "News API", "Tailwind CSS"],
@@ -116,17 +116,20 @@ const Projects = () => {
                 <FaGithub /> Source Code
               </a>
               <a
-                href={project.demo}
+                href={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline btn-primary gap-2"
               >
-                <FaExternalLinkAlt /> Live Demo
+                <FaExternalLinkAlt /> Read Docs
               </a>
             </div>
           </div>
         </div>
       ))}
+      <span className='py-2 flex justify-center items-center'>
+      <a href="/projects" className='text-indigo-600 text-lg hover:opacity-75 hover:scale-105 hover:-translate-y-2 transition-transform'>view more projects</a>
+      </span>
     </div>
   );
 
