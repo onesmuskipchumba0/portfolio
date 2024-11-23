@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState('light');
+  const location = useLocation();
 
   // Initialize theme from localStorage or default to 'light'
   useEffect(() => {
@@ -24,17 +26,17 @@ const Navbar = () => {
       <div className="w-full px-4 md:px-8 lg:px-16">
         {/* Logo/Name Section */}
         <div className="flex-1">
-          <a className="text-xl font-bold">Onesmus Bett</a>
+          <Link to="/" className="text-xl font-bold">Onesmus Bett</Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="flex-none hidden md:flex items-center">
           <ul className="menu menu-horizontal px-1">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
+            <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link></li>
+            <li><Link to="/projects" className={location.pathname === '/projects' ? 'active' : ''}>Projects</Link></li>
+            <li><Link to="/skills" className={location.pathname === '/skills' ? 'active' : ''}>Skills</Link></li>
+            <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link></li>
           </ul>
           
           {/* Theme Toggle Button */}
@@ -91,11 +93,11 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="absolute top-16 left-0 w-full bg-base-100 shadow-lg md:hidden">
           <ul className="menu menu-vertical px-4 py-2">
-            <li><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-            <li><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-            <li><a href="#projects" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
-            <li><a href="#skills" onClick={() => setIsMenuOpen(false)}>Skills</a></li>
-            <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+            <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/projects" onClick={() => setIsMenuOpen(false)}>Projects</Link></li>
+            <li><Link to="/skills" onClick={() => setIsMenuOpen(false)}>Skills</Link></li>
+            <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
           </ul>
         </div>
       )}

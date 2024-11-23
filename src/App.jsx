@@ -1,29 +1,26 @@
-import './App.css'
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import About from './components/About'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import ErrorBoundary from './components/ErrorBoundary'
-import { Route,BrowserRouter, Routes } from 'react-router-dom'
-import ProjectsPage from './pages/ProjectsPage'
-import HomePage from './pages/HomePage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Skills from './pages/Skills';
+import Contact from './pages/Contact';
+
 function App() {
   return (
-    <>
-        <Navbar/>
-        <BrowserRouter>
+    <Router>
+      <div className="min-h-screen">
+        <Navbar />
         <Routes>
-          <Route element={<HomePage/>} path='/'/>
-          <Route element={<ProjectsPage/>} path='/projects'/>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
-        </BrowserRouter>
-        <Footer />
-    </>
- 
-  )
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
