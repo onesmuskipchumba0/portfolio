@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaDownload, FaGithub, FaLinkedin, FaCode, FaServer, FaDatabase, FaTools } from 'react-icons/fa';
+import { SiUpwork, SiFiverr } from 'react-icons/si';
 import { useState, useEffect } from 'react';
 
 const About = () => {
@@ -81,12 +82,20 @@ const About = () => {
                     <FaGithub className="mr-2" /> GitHub Profile
                   </a>
                   <a 
-                    href="https://linkedin.com/in/yourusername" 
+                    href="https://www.fiverr.com/onesmus509"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="btn btn-outline w-full"
                   >
-                    <FaLinkedin className="mr-2" /> LinkedIn Profile
+                    <SiFiverr className="mr-2" /> Fiverr Profile
+                  </a>
+                  <a 
+                    href="https://www.upwork.com/freelancers/~0197ca6f21c4684883?mp_source=share"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="btn btn-outline w-full"
+                  >
+                    <SiUpwork className="mr-2" /> Upwork Profile
                   </a>
                 </div>
               </div>
@@ -121,7 +130,7 @@ const About = () => {
               </div>
               <div>
                 <p className="font-medium">Available for:</p>
-                <p className="text-base-content/70">Freelance & Full-time</p>
+                <p className="text-base-content/70">Freelance on Fiverr & Upwork</p>
               </div>
             </div>
 
