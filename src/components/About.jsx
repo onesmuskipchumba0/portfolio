@@ -56,8 +56,11 @@ const About = () => {
             </div>
 
             {/* Download CV Button */}
-            <button className="btn btn-primary gap-2">
-              <FaDownload /> Download CV
+            <button 
+              onClick={() => window.open('./resumedocx.pdf', '_blank', 'noopener,noreferrer')}
+              className="btn btn-primary gap-2"
+            >
+              <FaDownload /> View CV
             </button>
           </div>
 
