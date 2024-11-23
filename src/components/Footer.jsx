@@ -1,142 +1,137 @@
-import { FaGithub, FaEnvelope, FaArrowUp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { SiUpwork, SiFiverr } from 'react-icons/si';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  const currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    {
+      name: 'GitHub',
+      icon: FaGithub,
+      url: 'https://github.com/onesmuskipchumba0',
+      color: 'hover:text-gray-100'
+    },
+    {
+      name: 'Upwork',
+      icon: SiUpwork,
+      url: 'https://www.upwork.com/freelancers/~0197ca6f21c4684883?mp_source=share',
+      color: 'hover:text-[#14a800]'
+    },
+    {
+      name: 'Fiverr',
+      icon: SiFiverr,
+      url: 'https://www.fiverr.com/onesmus509',
+      color: 'hover:text-[#1dbf73]'
+    },
+    {
+      name: 'Email',
+      icon: FaEnvelope,
+      url: 'mailto:onesmuskipchumba5@gmail.com',
+      color: 'hover:text-primary'
+    }
+  ];
+
+  const footerLinks = [
+    {
+      title: 'Quick Links',
+      links: [
+        { name: 'Home', href: '/' },
+        { name: 'About', href: '/about' },
+        { name: 'Projects', href: '/projects' },
+        { name: 'Contact', href: '/contact' }
+      ]
+    },
+    {
+      title: 'Services',
+      links: [
+        { name: 'Frontend Development', href: '#services' },
+        { name: 'Backend Development', href: '#services' },
+        { name: 'Full Stack Development', href: '#services' },
+        { name: 'Database Design', href: '#services' }
+      ]
+    },
+    {
+      title: 'Hire Me',
+      links: [
+        { name: 'Upwork', href: 'https://www.upwork.com/freelancers/~0197ca6f21c4684883?mp_source=share' },
+        { name: 'Fiverr', href: 'https://www.fiverr.com/onesmus509' },
+        { name: 'Direct Contact', href: 'mailto:onesmuskipchumba5@gmail.com' }
+      ]
+    }
+  ];
 
   return (
-    <footer className="bg-base-200 pt-16">
-      {/* Main Footer Content */}
+    <motion.footer 
+      className="bg-base-300 text-base-content"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-16">
-          {/* About Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Onesmus Bett</h3>
-            <p className="text-base-content/70 mb-4">
-              A passionate MERN stack developer focused on creating innovative web solutions
-              and delivering exceptional user experiences.
+        {/* Main Footer Content */}
+        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Onesmus Bett</h2>
+            <p className="text-base-content/70">
+              Full Stack Developer specializing in MERN stack development. Building efficient and scalable web applications.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/onesmuskipchumba0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-circle btn-sm btn-ghost"
-                title="GitHub"
-              >
-                <FaGithub className="text-xl" />
-              </a>
-              <a
-                href="https://www.upwork.com/freelancers/~0197ca6f21c4684883?mp_source=share"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-circle btn-sm btn-ghost"
-                title="Upwork"
-              >
-                <SiUpwork className="text-xl" />
-              </a>
-              <a
-                href="https://www.fiverr.com/onesmus509"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-circle btn-sm btn-ghost"
-                title="Fiverr"
-              >
-                <SiFiverr className="text-xl" />
-              </a>
-              <a
-                href="mailto:onesmuskipchumba5@gmail.com"
-                className="btn btn-circle btn-sm btn-ghost"
-                title="Email"
-              >
-                <FaEnvelope className="text-xl" />
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#home" className="text-base-content/70 hover:text-primary transition-colors">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-base-content/70 hover:text-primary transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#skills" className="text-base-content/70 hover:text-primary transition-colors">
-                  Skills
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-base-content/70 hover:text-primary transition-colors">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-base-content/70 hover:text-primary transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Contact Info</h3>
-            <ul className="space-y-2">
-              <li className="text-base-content/70">
-                <span className="font-semibold">Email:</span>{' '}
-                <a 
-                  href="mailto:onesmuskipchumba5@gmail.com"
-                  className="hover:text-primary transition-colors"
+            {/* Social Links */}
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-2xl transition-colors duration-300 ${social.color}`}
+                  aria-label={social.name}
                 >
-                  onesmuskipchumba5@gmail.com
+                  <social.icon />
                 </a>
-              </li>
-              <li className="text-base-content/70">
-                <span className="font-semibold">Location:</span> Kenya
-              </li>
-              <li className="text-base-content/70">
-                <span className="font-semibold">Freelance:</span>{' '}
-                <span className="text-success">Available</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-base-300">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Copyright */}
-            <div className="text-base-content/70 text-sm">
-              © {new Date().getFullYear()} Onesmus Bett. All rights reserved.
+              ))}
             </div>
+          </div>
 
-            {/* Back to Top Button */}
-            <button
-              onClick={scrollToTop}
-              className="btn btn-circle btn-primary btn-sm"
-              title="Back to top"
-            >
-              <FaArrowUp />
-            </button>
+          {/* Footer Links */}
+          {footerLinks.map((section) => (
+            <div key={section.title}>
+              <h3 className="font-semibold text-lg mb-4">{section.title}</h3>
+              <ul className="space-y-2">
+                {section.links.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="text-base-content/70 hover:text-primary transition-colors duration-300"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-base-content/10 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-sm text-base-content/70">
+              © {currentYear} Onesmus Bett. All rights reserved.
+            </div>
+            <div className="flex space-x-6 text-sm text-base-content/70">
+              <a href="/privacy" className="hover:text-primary transition-colors duration-300">
+                Privacy Policy
+              </a>
+              <a href="/terms" className="hover:text-primary transition-colors duration-300">
+                Terms of Service
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
