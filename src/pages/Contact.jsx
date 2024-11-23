@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 import { SiUpwork, SiFiverr } from 'react-icons/si';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,13 +63,34 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    const currentDate = new Date().toLocaleString();
+    const currentYear = new Date().getFullYear();
+
     try {
-      // Add your form submission logic here
-      // For example, using EmailJS or a backend API
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulated delay
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      const result = await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      const templateParams = {
+        user_name: formData.name,
+        user_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        sent_date: currentDate,
+        current_year: currentYear
+      };
+
+      if (result.text === 'OK') {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
+      console.error('Error sending email:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -144,12 +167,13 @@ const Contact = () => {
           <div className="card bg-base-200 shadow-xl">
             <div className="card-body">
               <h3 className="text-xl font-semibold mb-4">Send Me a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="form-control">
                     <label className="label">Name</label>
                     <input 
                       type="text" 
+                      name="user_name" // Important: match this with your EmailJS template
                       className="input input-bordered w-full" 
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -160,6 +184,7 @@ const Contact = () => {
                     <label className="label">Email</label>
                     <input 
                       type="email" 
+                      name="user_email" // Important: match this with your EmailJS template
                       className="input input-bordered w-full" 
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -171,6 +196,7 @@ const Contact = () => {
                   <label className="label">Subject</label>
                   <input 
                     type="text" 
+                    name="subject" // Important: match this with your EmailJS template
                     className="input input-bordered w-full" 
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
@@ -180,6 +206,7 @@ const Contact = () => {
                 <div className="form-control">
                   <label className="label">Message</label>
                   <textarea 
+                    name="message" // Important: match this with your EmailJS template
                     className="textarea textarea-bordered w-full h-32" 
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -189,13 +216,13 @@ const Contact = () => {
 
                 {submitStatus === 'success' && (
                   <div className="alert alert-success">
-                    Message sent successfully!
+                    Message sent successfully! I'll get back to you soon.
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
                   <div className="alert alert-error">
-                    Failed to send message. Please try again.
+                    Failed to send message. Please try again or contact me directly via email.
                   </div>
                 )}
 
