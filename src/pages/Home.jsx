@@ -456,54 +456,6 @@ const Home = () => {
           </div>
         </div>
       </motion.section>
-
-      {/* Contact Section */}
-      <motion.section 
-        className="py-20 bg-base-100"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Get In <span className="text-primary">Touch</span>
-            </h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-base-content/70 max-w-2xl mx-auto">
-              Let's discuss your project
-            </p>
-          </div>
-
-          <div className="card bg-base-200 shadow-xl max-w-2xl mx-auto">
-            <div className="card-body">
-              <form className="space-y-6">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Name</span>
-                  </label>
-                  <input type="text" className="input input-bordered" />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input type="email" className="input input-bordered" />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Message</span>
-                  </label>
-                  <textarea className="textarea textarea-bordered h-32"></textarea>
-                </div>
-                <div className="form-control mt-6">
-                  <button className="btn btn-primary">Send Message</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </motion.section>
     </>
   );
 };
