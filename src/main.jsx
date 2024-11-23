@@ -4,8 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS with your public key
-emailjs.init("YOUR_PUBLIC_KEY");
+const emailToken = import.meta.env.VITE_EMAIL_TKN;
+if (!emailToken) {
+  console.error('Email service configuration is missing');
+}
+
+emailjs.init(emailToken);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
