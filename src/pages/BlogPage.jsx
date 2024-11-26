@@ -43,15 +43,18 @@ const BlogPage = () => {
               <h1 className="text-3xl font-bold mb-4">{selectedPost.title}</h1>
               <div className="flex items-center mb-6 space-x-4">
                 <div className="avatar">
-                  <img 
-                    className="w-12 h-12 rounded-full"
-                    src={`/avatars/${selectedPost.author.toLowerCase().replace(' ', '-')}.jpg`} 
-                    alt={selectedPost.author} 
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/avatars/default-avatar.jpg';
-                    }}
-                  />
+                <img 
+                style={{ width: '32px', height: '32px' }} // Inline style
+                className="object-contain rounded-full"
+                src={`/avatars/${selectedPost.author.toLowerCase().replace(' ', '-')}.jpg`} 
+                alt={selectedPost.author} 
+                onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/avatars/default-avatar.jpg';
+                }}
+                />
+
+
                 </div>
                 <div>
                   <p className="font-semibold">{selectedPost.author}</p>
