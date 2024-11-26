@@ -7,6 +7,8 @@ import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import BlogPage from './pages/BlogPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
         </Routes>
       </div>
       <Footer/>
