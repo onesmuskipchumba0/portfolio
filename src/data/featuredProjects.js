@@ -2,7 +2,7 @@
 const studentsAdminImages = Object.values(import.meta.glob('../assets/images/studentsAdmin/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }));
 const cineverseImages = Object.values(import.meta.glob('../assets/images/cineverse/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }));
 const newsAppImages = Object.values(import.meta.glob('../assets/images/newsApp/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }));
-
+const mkulimaExpoImages = Object.values(import.meta.glob('../assets/images/mkulimaExpo/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }));
 export const featuredProjects = [
     {
       id: 1,
@@ -30,6 +30,15 @@ export const featuredProjects = [
         technologies: ["React", "Node.js", "Express", "News API", "Tailwind CSS"],
         github: "https://github.com/onesmuskipchumba0/news-web-app",
         demo: "https://news-web-app.vercel.app",
+      },
+      {
+        id:4,
+        name: "Mkulima Expo",
+        description: "A responsiveweb application that connects farmers with potential buyers for their produce. Features real-time product listing, chat and calls, and marketplace capabilities.",
+        images: mkulimaExpoImages,
+        technologies: ["React", "Node.js", "Express", "Supabase", "Tailwind CSS"],
+        github: "https://github.com/onesmuskipchumba0/mkulima-expo",
+        demo: "https://mkulima-expo.vercel.app",
       }
     // ... other featured projects
   ];
