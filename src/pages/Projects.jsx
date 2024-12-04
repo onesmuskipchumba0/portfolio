@@ -13,7 +13,6 @@ const Projects = () => {
   const [error, setError] = useState(null);
 
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -72,7 +71,7 @@ const Projects = () => {
                 <img
                   src={image}
                   alt={project.name}
-                  className="w-full h-full object-cover"
+                  className="w-full p-5 h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
