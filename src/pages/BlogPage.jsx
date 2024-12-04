@@ -38,6 +38,11 @@ const BlogPage = () => {
     setSelectedPost(blogPosts[0]);
   }, []);
 
+  const handlePostSelect = (post) => {
+    setSelectedPost(post);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen mt-24 font-sans">
 
@@ -71,6 +76,65 @@ const BlogPage = () => {
               </div>
 　
               <MarkdownRenderer filePath={selectedPost.mdFile} />
+              
+              {/* Similar Posts Section */}
+              <div className="mt-16 border-t border-gray-200 pt-8">
+                <h2 className="text-2xl font-bold mb-6">Similar Posts</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {blogPosts
+                    .filter(post => post.id !== selectedPost.id)
+                    .filter(post => 
+                      post.tags.some(tag => selectedPost.tags.includes(tag))
+                    )
+                    .slice(0, 2)
+                    .map(post => (
+                      <div
+                        key={post.id}
+                        className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                        onClick={() => handlePostSelect(post)}
+                      >
+                        <div className="card-body">
+                          <h3 className="card-title text-lg group-hover:text-primary transition-colors duration-300">
+                            {post.title}
+                          </h3>
+                          <p className="text-base-content/70 text-sm">{post.summary}</p>
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {post.tags.map((tag, index) => (
+                              <span
+                                key={index}
+                                className="badge badge-primary badge-outline transform hover:scale-105 transition-transform duration-200"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex justify-between items-center mt-4">
+                            <span className="text-sm text-base-content/60">
+                              {post.date}
+                            </span>
+                            <span className="flex items-center gap-1 text-sm text-primary group-hover:translate-x-1 transition-transform duration-300">
+                              Read more 
+                              <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor"
+                              >
+                                <path 
+                                  strokeLinecap="round" 
+                                  strokeLinejoin="round" 
+                                  strokeWidth={2} 
+                                  d="M13 7l5 5m0 0l-5 5m5-5H6" 
+                                />
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
             </>
           ) : (
             <div className="text-center py-8">
@@ -86,7 +150,7 @@ const BlogPage = () => {
             {blogPosts.map((post) => (
               <div 
                 key={post.id} 
-                onClick={() => setSelectedPost(post)}
+                onClick={() => handlePostSelect(post)}
                 className={`cursor-pointer mb-5 p-4 rounded-lg transition-all ${
                   selectedPost?.id === post.id 
                     ? 'bg-blue-200 text-slate-900 border-l-4 border-blue-600' 
