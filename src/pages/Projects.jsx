@@ -2,13 +2,32 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaRegFolder, FaStar, FaCodeBranch } from 'react-icons/fa';
 import { featuredProjects } from '../data/featuredProjects';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import '../styles/slick-custom.css';
 
 const Projects = () => {
   const [repos, setRepos] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    adaptiveHeight: false,
+    cssEase: "linear",
+    vertical: false,
+    centerMode: false,
+    fade: true
+  };
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -45,12 +64,20 @@ const Projects = () => {
       className="group relative bg-base-200 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
     >
       {/* Project Image with Overlay */}
-      <div className="relative overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.name}
-          className="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500"
-        />
+      <div className="relative overflow-hidden h-[300px]">
+        <Slider {...settings} className="h-full">
+          {project.images.map((image, i) => (
+            <div key={i} className="h-full">
+              <div className="h-full">
+                <img
+                  src={image}
+                  alt={project.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          ))}
+        </Slider>
         <div className="absolute inset-0 bg-gradient-to-t from-base-300/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="absolute bottom-0 p-6 space-y-3">
             <h3 className="text-2xl font-bold text-white">{project.name}</h3>
@@ -295,4 +322,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;
