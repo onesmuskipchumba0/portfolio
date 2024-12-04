@@ -3,11 +3,27 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaNodeJs, FaReact, FaCode, FaServer, FaMobile, FaDatabase, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTailwindcss, SiGit, SiUpwork, SiFiverr } from 'react-icons/si';
 import { featuredProjects } from '../data/featuredProjects';
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const Home = () => {
   const [githubData, setGithubData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    adaptiveHeight: false,
+    cssEase: "linear",
+    vertical: false,
+    centerMode: false,
+    fade: true
+  };
   useEffect(() => {
     const fetchGithubData = async () => {
       try {
@@ -281,7 +297,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredProjects.map((project, index) => (
+            {featuredProjects.slice(0,4).map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -291,19 +307,33 @@ const Home = () => {
                 className="group relative bg-base-200 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 {/* Project Image with Overlay */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-base-300/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 p-6 space-y-3">
-                      <h3 className="text-2xl font-bold text-white">{project.name}</h3>
-                      <p className="text-white/90">{project.description}</p>
-                    </div>
-                  </div>
-                </div>
+                <div className="relative overflow-hidden h-[300px]">
+        <Slider {...settings} className="h-full">
+          {project.images.map((image, i) => (
+            <div key={i} className="h-full">
+              <div className="h-full">
+                <img
+                  src={image}
+                  alt={project.name}
+                  className="w-full p-5 h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          ))}
+        </Slider>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+            <div className="space-y-3">
+              <h3 className="text-2xl font-bold text-white drop-shadow-lg">
+                {project.name}
+              </h3>
+              <p className="text-gray-100 line-clamp-3 text-sm md:text-base leading-relaxed drop-shadow-lg">
+                {project.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
                 {/* Project Details */}
                 <div className="p-6 space-y-4">
