@@ -78,10 +78,16 @@ const Projects = () => {
             </div>
           ))}
         </Slider>
-        <div className="absolute inset-0 bg-gradient-to-t from-base-300/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="absolute bottom-0 p-6 space-y-3">
-            <h3 className="text-2xl font-bold text-white">{project.name}</h3>
-            <p className="text-white/90">{project.description}</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+            <div className="space-y-3">
+              <h3 className="text-2xl font-bold text-white drop-shadow-lg">
+                {project.name}
+              </h3>
+              <p className="text-gray-100 line-clamp-3 text-sm md:text-base leading-relaxed drop-shadow-lg">
+                {project.description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
