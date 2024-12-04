@@ -17,7 +17,7 @@ const BlogPage = () => {
       title: 'Introduction to React and Tailwind', 
       summary: 'Explore the powerful combination of React, Tailwind CSS, and Daisy UI',
       author: 'Onesmus Bett',
-      date: 'November 26, 2024',
+      date: 'December 1, 2024',
       mdFile: '/posts/react-tailwind-daisy-blog.md',
       tags: ['React', 'Tailwind', 'Web Development']
     },
@@ -26,17 +26,16 @@ const BlogPage = () => {
       title: 'Advanced React State Management', 
       summary: 'Deep dive into modern state management techniques',
       author: 'Onesmus Bett',
-      date: 'November 30, 2024',
+      date: 'November 24, 2024',
       mdFile: '/posts/react-state-management-blog.md',
       tags: ['React', 'State Management', 'Hooks']
     }
-  ];
+  ].sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
-    const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
-    setSelectedPost(sortedPosts[0]);
+    setSelectedPost(blogPosts[0]);
   }, []);
 
   return (
@@ -70,7 +69,7 @@ const BlogPage = () => {
                   <p className="text-sm text-gray-500">{selectedPost.date}</p>
                 </div>
               </div>
-　　 　 　 　
+　
               <MarkdownRenderer filePath={selectedPost.mdFile} />
             </>
           ) : (
