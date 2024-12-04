@@ -3,8 +3,17 @@ import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const BlogPage = () => {
   const blogPosts = [
+    {
+      id: 1,
+      title: "Getting Started with React: A Comprehensive Guide",
+      summary: "A detailed guide covering everything you need to know to begin your React journey, from setup to best practices.",
+      author: 'Onesmus Bett',
+      date: 'December 4, 2024',
+      mdFile: '/posts/getting-started-with-react.md',
+      tags: ['React', 'JavaScript', 'Web Development', 'Frontend']
+    },
     { 
-      id: 1, 
+      id: 2, 
       title: 'Introduction to React and Tailwind', 
       summary: 'Explore the powerful combination of React, Tailwind CSS, and Daisy UI',
       author: 'Onesmus Bett',
@@ -13,11 +22,11 @@ const BlogPage = () => {
       tags: ['React', 'Tailwind', 'Web Development']
     },
     { 
-      id: 2, 
+      id: 3, 
       title: 'Advanced React State Management', 
       summary: 'Deep dive into modern state management techniques',
       author: 'Onesmus Bett',
-      date: 'December 10, 2024',
+      date: 'November 30, 2024',
       mdFile: '/posts/react-state-management-blog.md',
       tags: ['React', 'State Management', 'Hooks']
     }
@@ -61,7 +70,7 @@ const BlogPage = () => {
                   <p className="text-sm text-gray-500">{selectedPost.date}</p>
                 </div>
               </div>
-              
+　　 　 　 　
               <MarkdownRenderer filePath={selectedPost.mdFile} />
             </>
           ) : (
